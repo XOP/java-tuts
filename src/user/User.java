@@ -3,9 +3,15 @@ package user;
 import java.util.ArrayList;
 
 public class User {
-    public String name;
-    public boolean male;
-    public ArrayList loginData;
+    private String name;
+    private boolean male;
+    private ArrayList<Login> loginData;
+
+    public User(String name, boolean male) {
+        this.name = name;
+        this.male = male;
+        this.loginData = new ArrayList<Login>();
+    }
 
     public void setName(String name) {
         this.name = name;
@@ -23,11 +29,11 @@ public class User {
         return male;
     }
 
-    public void setLoginData(ArrayList loginData) {
+    public void setLoginData(ArrayList<Login> loginData) {
         this.loginData = loginData;
     }
 
-    public ArrayList getLoginData() {
+    public ArrayList<Login> getLoginData() {
         return loginData;
     }
 }

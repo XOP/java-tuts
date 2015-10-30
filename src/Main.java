@@ -1,36 +1,51 @@
+import java.time.Instant;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
 
-import user.User;
+import com.sun.corba.se.impl.orb.PropertyOnlyDataCollector;
+import user.*;
 
 
 public class Main {
 
-    private static ArrayList<String> logins = new ArrayList<>();
-    private static User user = new User();
+    private static ArrayList<User> getUsers() {
+        ArrayList<User> users = new ArrayList<User>();
 
-    public static void addLoginInfo() {
-        logins.add("1 - 12.10.2015 || 13:01");
-        logins.add("2 - 12.10.2015 || 18:32");
-        logins.add("3 - 13.10.2015 || 09:15");
+        User userMale = new User("Foo", true);
+        ArrayList<Login> userMaleLogins = userMale.getLoginData();
+        userMaleLogins.add(new Login(Date.from(Instant.now()), "100.100.0.100"));
+        userMaleLogins.add(new Login(Date.from(Instant.now()), "110.100.0.100"));
+
+        User userFemale = new User("Bar", false);
+        ArrayList<Login> userFemaleLogins = userFemale.getLoginData();
+        userFemaleLogins.add(new Login(Date.from(Instant.now()), "200.100.0.100"));
+        userFemaleLogins.add(new Login(Date.from(Instant.now()), "110.200.0.100"));
+
+        users.add(userMale);
+        users.add(userFemale);
+
+        return users;
     }
 
-    public static void addUserInfo() {
-        user.setName("Foo Bar");
-        user.setMale(true);
-        user.setLoginData(logins);
+    private static void sortLogins(ArrayList<User> users) {
+        for(User user: users){
+            Collections.sort(user.getLoginData(), new Comparator<Login>() {
+                @Override
+                public int compare(Login o1, Login o2) {
+                    return o1.getDate().compareTo(o2.getDate());
+                }
+            });
+        }
     }
 
     public static void main(String[] args) {
-        addLoginInfo();
-        addUserInfo();
+        ArrayList<User> users = getUsers();
+        sortLogins(users);
 
-        String userData;
-        userData = "" +
-                "User Name: " + user.getName() + "\n" +
-                "User Gender: " + (user.isMale() ? "Male" : "Female") + "\n" +
-                "User Login Data: TODO" + "\n"
-                ;
-
-        System.out.print(userData);
+        for(User user: users){
+            System.out.println(user.getName() + " - last login date - " + user.getLoginData().get(0).getDate());
+        }
     }
 }
