@@ -1,10 +1,8 @@
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.Date;
 
-import com.sun.corba.se.impl.orb.PropertyOnlyDataCollector;
 import user.*;
 
 
@@ -31,12 +29,7 @@ public class Main {
 
     private static void sortLogins(ArrayList<User> users) {
         for(User user: users){
-            Collections.sort(user.getLoginData(), new Comparator<Login>() {
-                @Override
-                public int compare(Login o1, Login o2) {
-                    return o1.getDate().compareTo(o2.getDate());
-                }
-            });
+            Collections.sort(user.getLoginData(), (o1, o2) -> o1.getDate().compareTo(o2.getDate()));
         }
     }
 
