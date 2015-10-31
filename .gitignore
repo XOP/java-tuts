@@ -1,5 +1,10 @@
 # IDE
 *.iml
 .idea
+
+# build
+out
+
+# temp
 _tmp
 
