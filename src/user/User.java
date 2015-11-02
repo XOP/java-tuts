@@ -1,11 +1,12 @@
 package user;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class User {
     private String name;
     private boolean male;
-    private ArrayList<Login> loginData;
+    private List<Login> loginData;
 
     public User(String name, boolean male) {
         this.name = name;
@@ -33,7 +34,7 @@ public class User {
         this.loginData = loginData;
     }
 
-    public ArrayList<Login> getLoginData() {
+    public List<Login> getLoginData() {
         return loginData;
     }
 }
