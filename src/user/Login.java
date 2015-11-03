@@ -1,12 +1,12 @@
 package user;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 public class Login {
-    private Date date;
+    private LocalDateTime date;
     private String ip;
 
-    public Login(Date date, String ip) {
+    public Login(LocalDateTime date, String ip) {
         this.date = date;
         this.ip = ip;
     }
@@ -19,11 +19,11 @@ public class Login {
         this.ip = ip;
     }
 
-    public Date getDate() {
+    public LocalDateTime getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDateTime date) {
         this.date = date;
     }
 }

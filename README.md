@@ -2,5 +2,5 @@
 
 > Java tutorials. Move along, nothing to see here :alien:
 
-## HW 1
+## Task 1 - [Results](result-1.md)
 
